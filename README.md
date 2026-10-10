@@ -90,6 +90,10 @@ While the picker or router is on, every prompt you type goes to TypeSafe as well
 | Skill picker, 10 realistic requests | 9/10 Claude Code, 10/10 Codex |
 | Model router, 8 sizes plus 2 short replies | 10/10 in both agents |
 
+## Acknowledgments
+
+These prompts were adapted from the prompts shared by Jay E / RoboNuggets in [“Jev will 10x your Claude Code (Here's How)”](https://www.youtube.com/watch?v=tTnUcSj-QPA). I made minor modifications for use in terminal-based agentic workflows. Credit for the original prompts goes to their creator.
+
 ## Links
 
 - TypeSafe docs index: https://docs.typesafe.ai/llms.txt
