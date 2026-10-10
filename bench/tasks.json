@@ -1,0 +1,20 @@
+[
+  {"id": "t1_typo", "size": "tiny",
+   "prompt": "In calc/core.py the ZeroDivisionError message says 'Cannot devide by zero'. Fix the typo so it says 'Cannot divide by zero'. Change nothing else.",
+   "check": "check_t1_typo.py"},
+  {"id": "t2_power", "size": "tiny",
+   "prompt": "Add a function power(base, exp) to calc/core.py that returns base raised to exp, with a one-line docstring like the other functions. Change nothing else.",
+   "check": "check_t2_power.py"},
+  {"id": "t3_variance", "size": "everyday",
+   "prompt": "Add variance(values) and stdev(values) to calc/stats.py. Use population variance (divide by n, not n-1), stdev is its square root. Both raise ValueError on an empty sequence and have docstrings in the same style as mean and median. Add tests for them in tests/test_stats.py and make sure the whole suite passes with: python3 -m unittest discover -s tests",
+   "check": "check_t3_variance.py"},
+  {"id": "t4_cli_json", "size": "everyday",
+   "prompt": "Add a --json flag to calc/cli.py. When given, print the result as a JSON object {\"result\": <number>} instead of the plain number. The flag must work before or after the positional arguments. Plain output must stay exactly as it is when the flag is absent. Keep the existing error handling.",
+   "check": "check_t4_cli_json.py"},
+  {"id": "t5_history", "size": "large",
+   "prompt": "Add operation history to the calc package.\n1. Create calc/history.py with a History class: append(op, a, b, result) records an entry as a dict with keys op, a, b, result; to_list() returns the entries as a list of dicts; undo() removes the most recent entry; save(path) writes the entries as JSON; History.load(path) is a classmethod returning a History from that JSON file (an empty History if the file does not exist).\n2. Add a --history PATH option to calc/cli.py. When given, load the History from PATH, append the operation just performed, and save it back after every successful operation.\n3. Add tests in tests/test_history.py and keep the whole suite passing with: python3 -m unittest discover -s tests",
+   "check": "check_t5_history.py"},
+  {"id": "t6_decimal", "size": "hardest",
+   "prompt": "Make calc/core.py precision-safe for decimal.Decimal. Requirements: add, subtract, multiply, divide and any other arithmetic there must accept int, float and Decimal in any combination. If either operand is a Decimal, the result must be a Decimal computed without binary-float rounding error (converting a float operand via str() or Decimal(repr(x)) is acceptable; Decimal(float) directly is not). If neither operand is a Decimal, behaviour and return types must be exactly as before (ints stay ints, floats stay floats). The divide-by-zero message must stay the same for Decimal zero too. Think about the subtle cases before coding, add tests in tests/test_core.py covering mixed inputs, and keep the whole suite passing with: python3 -m unittest discover -s tests",
+   "check": "check_t6_decimal.py"}
+]

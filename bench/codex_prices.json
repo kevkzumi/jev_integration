@@ -1,0 +1,7 @@
+{
+  "_comment": "USD per 1M tokens, standard tier, as of 2026-10-10 (OpenAI launch post for GPT-6.1 Sol plus pricing aggregators; openai.com blocks automated fetches). cached = rate for cached input tokens. 'default' applies to any model not listed.",
+  "gpt-6-astra": {"input": 10.0, "cached": 1.0, "output": 50.0},
+  "gpt-6.1-sol": {"input": 2.0, "cached": 0.10, "output": 10.0},
+  "gpt-6-luna": {"input": 0.10, "cached": 0.01, "output": 0.50},
+  "default": null
+}

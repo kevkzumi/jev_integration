@@ -94,6 +94,27 @@ While the picker or router is on, every prompt you type goes to TypeSafe as well
 
 These prompts were adapted from the prompts shared by Jay E / RoboNuggets in [“Jev will 10x your Claude Code (Here's How)”](https://www.youtube.com/watch?v=tTnUcSj-QPA). I made minor modifications for use in terminal-based agentic workflows. Credit for the original prompts goes to their creator.
 
+## Benchmark: does the router actually save anything?
+
+`bench/` measures the same coding tasks with routing off and on. One full pass with findings and a verdict is written up in [bench/RESULTS.md](bench/RESULTS.md).
+
+```bash
+python3 bench/bench.py --agent claude                 # 6 fixture tasks × off/on × 3 runs
+python3 bench/bench.py --agent both --runs 1          # quick pass on both agents
+python3 bench/bench.py --agent claude --repo ~/Dev/myproject --tasks my_tasks.json
+python3 bench/bench.py --report                       # re-print the table from bench/results.jsonl
+```
+
+- `bench/fixture/` is a tiny Python calculator package with a unit test suite.
+- `bench/tasks.json` holds six tasks across the four sizes, each with a prompt and a hidden check test in `bench/checks/` that is dropped into the run directory only after the agent finishes.
+- Each run copies the repo to a temp directory, runs the agent non-interactively, runs the check, and records pass/fail, cost, time and which models did the work to `bench/results.jsonl`. The original repo is never modified.
+- Routing is forced per run with `MODEL_ROUTER_FORCE=on|off` and the skill picker is forced off, so your live sessions are unaffected and the comparison is fair.
+- Claude Code reports exact dollars per model. Codex reports tokens for the main thread only, so the harness also reads the helper threads from `~/.codex/sessions` and prices everything with `bench/codex_prices.json` (standard-tier rates as of 2026-10-10, including the cached-input rate; update when OpenAI changes pricing).
+
+To benchmark on a real project, point `--repo` at it and write a tasks file whose checks use that project's own test suite. Use a project with tests, since pass/fail is what makes runs comparable.
+
+Keep in mind the fixed cost per turn: the main model pays for its system prompt and context on every message, routed or not, so routing only pays off when the helper's work outweighs that overhead. The benchmark shows where that crossover is for your setup.
+
 ## Links
 
 - TypeSafe docs index: https://docs.typesafe.ai/llms.txt
