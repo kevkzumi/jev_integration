@@ -1,0 +1,8 @@
+build me a skill picker that uses Jev. i have a lot of skills (saved instructions) and sometimes the wrong one gets loaded. Jev can read the whole list in one go and point at the right one in under half a second. Jev is already set up in this workspace: the key is in TYPESAFE_API_KEY, the model is jev-latest, and the installed TypeSafe skill has the API details.
+- make a short list of every skill i have: its name, plus one line on what it's for
+- when i ask for something, send my request and that list to Jev as one choice question: which one skill should handle this? add a "none of these" option so Jev is never forced to pick
+- if Jev is 60% sure or more, load that skill and tell me in one short line which skill it picked and how sure it was. if it's less sure, ignore Jev and pick the skill yourself the normal way
+- if my list is too long for one question, split it into groups and run a final round between the group winners
+- give me a way to try it on any request, whenever i want. then ask me if i want it running on every message. if yes, keep it OFF until i turn it on, and make sure it never slows me down or blocks a message
+- test it with 10 requests i would really type. show me a table of the request, the skill Jev picked and how sure it was, and flag every miss. where it misses, the usual fix is a clearer one-line description for that skill, so suggest the rewrite
+keep Jev as the picker only. it never runs a skill and never writes anything. it only points. and remember every request goes to TypeSafe while it's on, so it stays off for private work.
